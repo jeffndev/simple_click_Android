@@ -11,8 +11,16 @@ tools:context=".MainFragment">
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:src="@drawable/click02"
-    android:id="@+id/main_activity_counter_button"
+    android:id="@+id/main_fragment_counter_button"
 
     />
-
+<TextView
+    android:paddingTop="32dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:fontFamily="sans-serif-condensed"
+    android:textSize="48sp"
+    android:textColor="#FFFFFF"
+    android:id="@+id/main_fragment_increment_label"/>
 </LinearLayout>

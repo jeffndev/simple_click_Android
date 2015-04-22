@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -14,20 +15,33 @@ import android.widget.Toast;
  */
 public class MainFragment extends Fragment{
     private int mIncrement = 0;
+    final private String INCREMENT_STATE_KEY = "inc";
+    private TextView mIncrementLabel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-        ImageButton btn = (ImageButton)rootView.findViewById(R.id.main_activity_counter_button);
+        if(savedInstanceState != null && savedInstanceState.containsKey(INCREMENT_STATE_KEY)){
+            mIncrement = savedInstanceState.getInt(INCREMENT_STATE_KEY);
+        }
+        mIncrementLabel = (TextView)rootView.findViewById(R.id.main_fragment_increment_label);
+        //mIncrementLabel.setText(Integer.toString(mIncrement));
+        ImageButton btn = (ImageButton)rootView.findViewById(R.id.main_fragment_counter_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ++mIncrement;
-                Toast.makeText(getActivity(),"Increment count: " + mIncrement, Toast.LENGTH_SHORT).show();
+                //mIncrementLabel.setText(Integer.toString(mIncrement));
+                Toast.makeText(getActivity(), "Increment count: " + mIncrement, Toast.LENGTH_SHORT).show();
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(INCREMENT_STATE_KEY, mIncrement);
     }
 }
