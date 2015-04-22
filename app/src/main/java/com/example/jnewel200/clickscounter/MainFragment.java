@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by jnewel200 on 4/22/2015.
@@ -26,14 +25,13 @@ public class MainFragment extends Fragment{
             mIncrement = savedInstanceState.getInt(INCREMENT_STATE_KEY);
         }
         mIncrementLabel = (TextView)rootView.findViewById(R.id.main_fragment_increment_label);
-        //mIncrementLabel.setText(Integer.toString(mIncrement));
+        mIncrementLabel.setText(Integer.toString(mIncrement));
         ImageButton btn = (ImageButton)rootView.findViewById(R.id.main_fragment_counter_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ++mIncrement;
-                //mIncrementLabel.setText(Integer.toString(mIncrement));
-                Toast.makeText(getActivity(), "Increment count: " + mIncrement, Toast.LENGTH_SHORT).show();
+                mIncrementLabel.setText(Integer.toString(mIncrement));
             }
         });
         return rootView;
